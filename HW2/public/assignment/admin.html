@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assignment/css/dashboard.css">
+    <title>Admin</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Form Maker</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Username</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/assignment/home.html">Home</a></li>
+                <li><a href="/assignment/profile.html">Profile</a></li>
+                <li class="active"><a href="#">Admin<span class="sr-only">(current)</span></a></li>
+                <li><a href="/assignment/forms.html">Forms</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="row">
+            <div class="form-group">
+                <h1 class="page-header">Admin</h1>
+            </div>
+            <div class="form-group">
+                <h2 class="sub-header">Users</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span class="glyphicon glyphicon-triangle-bottom"></span>
+                                Username
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-triangle-bottom"></span>
+                                Password
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-triangle-bottom"></span>
+                                Role
+                            </th>
+                            <th>
+                                <span class="glyphicon glyphicon-triangle-bottom"></span>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>
+                                <input type="text" class="form-control" id="username" placeholder="Username">
+                            </th>
+                            <th>
+                                <input type="password" class="form-control" id="password" placeholder="Password">
+                            </th>
+                            <th>
+                                <input type="text" class="form-control" id="roles" placeholder="role1, role2">
+                            </th>
+                            <th>
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Alice</th>
+                            <th></th>
+                            <th>Student</th>
+                            <th>
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Charlie</th>
+                            <th></th>
+                            <th></th>
+                            <th>
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Bob</th>
+                            <th></th>
+                            <th>Faculty | Admin</th>
+                            <th>
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

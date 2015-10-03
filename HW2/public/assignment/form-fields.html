@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/assignment/css/dashboard.css">
+    <title>Form-Fields</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Form Maker</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/assignment/register.html">Register</a></li>
+                <li><a href="/assignment/login.html">Login</a></li>
+                <li><a href="#">Username</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Form Maker</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Username</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/assignment/home.html">Home</a></li>
+                <li><a href="/assignment/profile.html">Profile</a></li>
+                <li><a href="/assignment/admin.html">Admin</a></li>
+                <li class="active"><a href="#">Forms<span class="sr-only">(current)</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">Forms</h1>
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="/assignment/forms.html">Forms</a></li>
+            <li role="presentation" class="active"><a href="#">Fields</a></li>
+        </ul>
+        <br>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="firstname" placeholder="First Name">
+                    </div>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-pencil"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-plus"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-remove"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-align-justify"></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+                    </div>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-pencil"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-plus"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-remove"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-align-justify"></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dateOfBirth">Date Of Birth</label>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <input type="date" class="form-control" id="dateOfBirth">
+                    </div>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-pencil"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-plus"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-remove"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-align-justify"></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <select class="form-control" id="gender">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-pencil"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-plus"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-remove"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-align-justify"></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Roles</label>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="checkbox">
+                            <label for="admin">
+                                <input type="checkbox" id="admin"> Admin
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="student">
+                                <input type="checkbox" id="student"> Student
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="user">
+                                <input type="checkbox" id="user"> User
+                            </label>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-pencil"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-plus"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-remove"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-align-justify"></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>License Agreement</label>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="radio">
+                            <label for="licenseAgree">
+                                <input type="radio" id="licenseAgree" value="agree" checked> Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="licenseDisagree">
+                                <input type="radio" id="licenseDisagree" value="disagree"> No
+                            </label>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-pencil"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-plus"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-remove"></button>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-align-justify"></button>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="newFieldType">Add New Field</label>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <select class="form-control" id="newFieldType">
+                            <option>Single Line Text</option>
+                            <option>Date</option>
+                            <option>Dropdown</option>
+                            <option>CheckBoxes</option>
+                            <option>Radio buttons</option>
+                            <option>Paragraph Text Field</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-default glyphicon glyphicon-plus"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
