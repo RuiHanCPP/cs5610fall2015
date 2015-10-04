@@ -21,25 +21,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="form-fields.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/form-fields.html">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56215006">
-              <caret line="171" column="17" selection-start-line="171" selection-start-column="17" selection-end-line="171" selection-end-column="17" />
+            <state vertical-scroll-proportion="-6.5384617">
+              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/admin.html">
+      <file leaf-file-name="register.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.192308">
-              <caret line="86" column="32" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
+            <state vertical-scroll-proportion="-12.769231">
+              <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.0">
+              <caret line="46" column="52" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="form-fields.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/form-fields.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-25.192308">
+              <caret line="147" column="74" selection-start-line="147" selection-start-column="74" selection-end-line="147" selection-end-column="74" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/forms.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2474804">
+              <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
               <folding>
-                <marker date="1443907473135" expanded="true" signature="1468:6409" placeholder="..." />
-                <marker date="1443907473135" expanded="true" signature="2003:6402" placeholder="..." />
-                <marker date="1443907473135" expanded="true" signature="6377:6391" placeholder="..." />
+                <marker date="1443922308987" expanded="true" signature="4986:4991" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -67,10 +95,10 @@
         <option value="$PROJECT_DIR$/cs5610/public/assignment/home.html" />
         <option value="$PROJECT_DIR$/cs5610/public/assignment/register.html" />
         <option value="$PROJECT_DIR$/cs5610/public/assignment/login.html" />
+        <option value="$PROJECT_DIR$/cs5610/public/assignment/form-fields.html" />
         <option value="$PROJECT_DIR$/cs5610/public/assignment/profile.html" />
         <option value="$PROJECT_DIR$/cs5610/public/assignment/admin.html" />
         <option value="$PROJECT_DIR$/cs5610/public/assignment/forms.html" />
-        <option value="$PROJECT_DIR$/cs5610/public/assignment/form-fields.html" />
       </list>
     </option>
   </component>
@@ -529,65 +557,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/home.html">
+    <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33370662">
-          <caret line="26" column="77" selection-start-line="26" selection-start-column="77" selection-end-line="26" selection-end-column="77" />
+        <state vertical-scroll-proportion="0.7144457">
+          <caret line="66" column="74" selection-start-line="66" selection-start-column="74" selection-end-line="66" selection-end-column="74" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/profile.html">
+    <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15229563">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.307693">
-          <caret line="55" column="101" selection-start-line="55" selection-start-column="101" selection-end-line="55" selection-end-column="101" />
+        <state vertical-scroll-proportion="-12.769231">
+          <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/forms.html">
+    <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3706607">
-          <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
-          <folding>
-            <marker date="1443909111334" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39081746">
-          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+        <state vertical-scroll-proportion="-2.0">
+          <caret line="46" column="52" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/admin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.192308">
-          <caret line="86" column="32" selection-start-line="86" selection-start-column="32" selection-end-line="86" selection-end-column="32" />
+        <state vertical-scroll-proportion="-33.346153">
+          <caret line="140" column="6" selection-start-line="140" selection-start-column="6" selection-end-line="140" selection-end-column="6" />
           <folding>
-            <marker date="1443907473135" expanded="true" signature="1468:6409" placeholder="..." />
-            <marker date="1443907473135" expanded="true" signature="2003:6402" placeholder="..." />
-            <marker date="1443907473135" expanded="true" signature="6377:6391" placeholder="..." />
+            <marker date="1443921964706" expanded="true" signature="1468:6396" placeholder="..." />
+            <marker date="1443921964706" expanded="true" signature="2003:6389" placeholder="..." />
+            <marker date="1443921964706" expanded="true" signature="6364:6378" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/form-fields.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56215006">
-          <caret line="171" column="17" selection-start-line="171" selection-start-column="17" selection-end-line="171" selection-end-column="17" />
+        <state vertical-scroll-proportion="-25.192308">
+          <caret line="147" column="74" selection-start-line="147" selection-start-column="74" selection-end-line="147" selection-end-column="74" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cs5610/public/assignment/forms.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2474804">
+          <caret line="77" column="20" selection-start-line="77" selection-start-column="20" selection-end-line="77" selection-end-column="20" />
+          <folding>
+            <marker date="1443922308987" expanded="true" signature="4986:4991" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
