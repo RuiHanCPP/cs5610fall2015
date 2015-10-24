@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.route.min.js"></script>
+    <script scr="/assignment/app.js"></script>
+    <script src="/assignment/config.js"></script>
+    <script src="/assignment/header/header.controller.js"></script>
+    <script src="/assignment/sidebar/sidebar.controller.js"></script>
+    <script src="/assignment/login/login.controller.js"></script>
+    <link rel="stylesheet" href="/assignment/css/style.css">
+    <title>Welcome !</title>
+</head>
+<body>
+    <div ng-include="header.view.html"></div>
+
+    <div class="container-fluid">
+        <div class="row">
+        	<div ng-include="sidebar.view.html"></div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
+        </div>
+
+    </div>
+
+</body>
