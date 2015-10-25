@@ -1,8 +1,8 @@
 <div ng-controller="SidebarController" class="col-sm-3 col-md-2 sidebar">
     <ul class="nav nav-sidebar">
-        <li class="active"><a href="#">Home<span class="sr-only">(current)</span></a></li>
-        <li><a href="/assignment/profile.html">Profile</a></li>
-        <li><a href="/assignment/admin.html">Admin</a></li>
-        <li><a href="/assignment/forms.html">Forms</a></li>
+        <li ng-class="{active: isActive('home')}"><a href="#/home">Home</a></li>
+        <li ng-hide="!hasUser" ng-class="{active: isActive('profile')}"><a href="#/profile">Profile</a></li>
+        <li ng-hide="true"><a href="/admin.html">Admin</a></li>
+        <li><a href="/forms.html">Forms</a></li>
     </ul>
 </div>
