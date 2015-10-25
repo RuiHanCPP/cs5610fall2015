@@ -27,6 +27,7 @@
 			$rootScope.user.firstname = user.firstname;
 			$rootScope.user.lastname = user.lastname;
 			getUserFromRoot();
+			alert("Profile update complete!");
 		}
 
 		function getUserFromRoot() {

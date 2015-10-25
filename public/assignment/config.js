@@ -6,9 +6,6 @@
 
 	function Configure($routeProvider) {
 		$routeProvider
-			.when("/", {
-				templateUrl: "home/home.view.html",
-			})
 			.when("/home", {
 				templateUrl: "home/home.view.html",
 			})

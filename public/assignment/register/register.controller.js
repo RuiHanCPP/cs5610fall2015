@@ -9,11 +9,11 @@
 		init();
 		
 		$scope.register = function() {
-			if ($scope.password == $scope.passwordRe) {
+			if (inputValidate()) {
 				var user = {
 					username: $scope.username,
 					password: $scope.password,
-					email: $scope.email,
+					email: $scope.email.text,
 				};
 				UserService.createUser(user, createUser);
 			}
@@ -27,7 +27,17 @@
 		function init() {
 			if ($rootScope.user !== undefined) {
 				$location.path("/home");
+			} else {
+				$scope.username = "username";
+				$scope.email = {
+					text: 'me@example.com'
+				};
 			}
+		}
+		function inputValidate() {
+			console.log($scope.password == $scope.passwordRe);
+			console.log($scope.myForm.emailInput.$valid);
+			return $scope.password == $scope.passwordRe && $scope.myForm.emailInput.$valid;
 		}
 	}
 })();

@@ -39,7 +39,7 @@
 		}
 		
 		$scope.disableUpdate = function() {
-			return curForm === undefined;
+			return curForm === undefined && $scope.formName === "";
 		}
 		
 		$scope.disableAdd = function() {
