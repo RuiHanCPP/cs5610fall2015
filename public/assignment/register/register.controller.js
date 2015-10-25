@@ -5,6 +5,9 @@
 		.controller("RegisterController", RegisterController);
 
 	function RegisterController($scope, $rootScope, $location, UserService) {
+		
+		init();
+		
 		$scope.register = function() {
 			if ($scope.password == $scope.passwordRe) {
 				var user = {
@@ -20,6 +23,11 @@
 			console.log(user);
 			$rootScope.user = user;
 			$location.path("/profile");
+		}
+		function init() {
+			if ($rootScope.user !== undefined) {
+				$location.path("/home");
+			}
 		}
 	}
 })();

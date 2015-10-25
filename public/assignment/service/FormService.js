@@ -12,6 +12,7 @@
 			deleteFormById : deleteFormById,
 			updateFormById : updateFormById
 		};
+		return FormService;
 
 		function guid() {
 		    function s4() {
@@ -45,6 +46,7 @@
 				if (forms[i].id == formId) {
 					forms.splice(i, i + 1);
 					callback(forms);
+					break;
 				}
 			}
 		}
@@ -57,6 +59,7 @@
 					}
 				}
 				callback(forms[i]);
+				break;
 			}
 		}
 	}

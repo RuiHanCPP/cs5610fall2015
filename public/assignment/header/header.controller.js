@@ -6,9 +6,11 @@
 
 	function HeaderController($scope, $rootScope, $location) {
 		$scope.$location = $location;
-		$scope.hasUser = $rootScope.user !== undefined;
+		$scope.hasUser = function() {
+			return $rootScope.user !== undefined;
+		}
 		$scope.isActive = function(path) {
-			return $location.url().indexOf('register') != -1;
+			return $location.url().indexOf(path) != -1;
 		}
 		$scope.logout = function() {
 			delete $rootScope.user;

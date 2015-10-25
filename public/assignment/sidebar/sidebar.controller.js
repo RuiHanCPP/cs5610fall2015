@@ -6,7 +6,9 @@
 
 	function SidebarController($scope, $rootScope, $location) {
 		$scope.$location = $location;
-		$scope.hasUser = $rootScope.user !== undefined;
+		$scope.hasUser = function() {
+			return $rootScope.user !== undefined;
+		}
 		$scope.isActive = function(path) {
 			return $location.url().indexOf(path) != -1;
 		}

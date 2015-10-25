@@ -4,9 +4,9 @@
 		.module("FormBuilderApp")
 		.controller("ProfileController", ProfileController);
 
-	function ProfileController($scope, $rootScope, UserService) {
-
-		getUserFromRoot();
+	function ProfileController($scope, $rootScope, $location, UserService) {
+		
+		init();
 
 		$scope.update = function() {
 			var user = {
@@ -35,6 +35,14 @@
 			$scope.email = $rootScope.user.email;
 			$scope.firstname = $rootScope.user.firstname;
 			$scope.lastname = $rootScope.user.lastname;
+		}
+		
+		function init() {
+			if ($rootScope.user === undefined) {
+				$location.path("/home");
+			} else {
+				getUserFromRoot();
+			}
 		}
 	}
 })();

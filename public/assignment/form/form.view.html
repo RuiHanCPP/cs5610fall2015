@@ -23,24 +23,24 @@
 				<input ng-model="formName" type="text" class="form-control" id="name" placeholder="Name">
 			</th>
 			<th>
-				<button ng-click="addForm()" type="button" class="btn btn-default">
+				<button ng-disabled="disableAdd()" ng-click="addForm()" type="button" class="btn btn-danger">
 					<span class="glyphicon glyphicon-plus"></span>
 				</button>
-				<button type="button" class="btn btn-default">
-					<span ng-click="selectForm()" class="glyphicon glyphicon-ok"></span>
+				<button ng-disabled="disableUpdate()" type="button" class="btn btn-primary">
+					<span ng-click="updateForm()" class="glyphicon glyphicon-ok"></span>
 				</button>
 			</th>
 		</tr>
-		<tr>
-			<th>Registration Form</th>
-			<th>
-				<button ng-click="deleteForm($index)" type="button" class="btn btn-default">
+		<tr ng-repeat="form in forms">
+			<td>{{form.formName}}</td>
+			<td>
+				<button ng-click="deleteForm($index)" type="button" class="btn btn-danger">
 					<span class="glyphicon glyphicon-remove"></span>
 				</button>
-				<button ng-click="selectForm($index)" type="button" class="btn btn-default">
+				<button ng-click="selectForm($index)" type="button" class="btn btn-primary">
 					<span class="glyphicon glyphicon-pencil"></span>
 				</button>
-			</th>
+			</td>
 		</tr>
 		</tbody>
 	</table>

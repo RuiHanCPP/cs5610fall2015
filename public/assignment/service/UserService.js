@@ -14,6 +14,7 @@
 			deleteUserById : deleteUserById,
 			updateUser : updateUser
 		};
+		return UserService;
 
 		function guid() {
 		    function s4() {
@@ -26,9 +27,9 @@
 		}
 
 		function findUserByUsernameAndPassword(username, password, callback) {
-			for (var i = 0; i < user.length; ++i) {
+			for (var i = 0; i < users.length; ++i) {
 				if (users[i].username == username && users[i].password == password) {
-					callback(user);
+					callback(users[i]);
 				}
 			}
 			callback(null);
