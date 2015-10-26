@@ -14,7 +14,7 @@
 
 		function userGetter(res) {
 			console.log(res);
-			if (res != null) {
+			if (res != undefined) {
 				$rootScope.user = res;
 				$location.path("/profile");
 			} else {

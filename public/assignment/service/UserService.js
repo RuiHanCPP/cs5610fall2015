@@ -30,6 +30,7 @@
 			for (var i = 0; i < users.length; ++i) {
 				if (users[i].username == username && users[i].password == password) {
 					callback(users[i]);
+					return;
 				}
 			}
 			callback(null);
@@ -50,6 +51,7 @@
 				if (users[i].id == id) {
 					users.splice(i, i + 1);
 					callback(users);
+					return;
 				}
 			}
 		}
@@ -61,6 +63,7 @@
 						users[i][property] = user[property];
 					}
 					callback(users[i]);
+					return;
 				}
 			}
 		}

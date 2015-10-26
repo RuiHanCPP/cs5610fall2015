@@ -46,7 +46,7 @@
 				if (forms[i].id == formId) {
 					forms.splice(i, i + 1);
 					callback(forms);
-					break;
+					return;
 				}
 			}
 		}
@@ -59,7 +59,7 @@
 					}
 				}
 				callback(forms[i]);
-				break;
+				return;
 			}
 		}
 	}

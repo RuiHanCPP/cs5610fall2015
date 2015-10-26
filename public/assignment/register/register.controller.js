@@ -35,8 +35,6 @@
 			}
 		}
 		function inputValidate() {
-			console.log($scope.password == $scope.passwordRe);
-			console.log($scope.myForm.emailInput.$valid);
 			return $scope.password == $scope.passwordRe && $scope.myForm.emailInput.$valid;
 		}
 	}
