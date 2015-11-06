@@ -33,7 +33,7 @@
                 templateUrl: "docEdit/docEdit.view.html",
                 controller: "docEditController"
             })
-            .when('/doc/new', {
+            .when('/newDoc', {
                 templateUrl: "newDoc/newDoc.view.html",
                 controller: "newDocController"
             })
