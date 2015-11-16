@@ -19,10 +19,11 @@
 
             $http.get("/api/assignment/user?username=" + username + "&password=" + password)
                 .success(function(response) {
+                    // single user
                     deferred.resolve(response);
                 });
 
-			return deferred.promise();
+			return deferred.promise;
 		}
 
 		function findAllUsers() {
@@ -30,10 +31,11 @@
 
             $http.get("/api/assignment/user")
                 .success(function(response) {
+                    // all users
                     deferred.resolve(response);
                 });
 
-            return deferred.promise();
+            return deferred.promise;
 		}
 
 		function createUser(user) {
@@ -41,10 +43,11 @@
 
             $http.post("/api/assignment/user", user)
                 .success(function(response) {
+                    // all users
                     deferred.resolve(response);
                 });
 
-            return deferred.promise();
+            return deferred.promise;
 		}
 
 		function deleteUserById(id) {
@@ -52,10 +55,11 @@
 
             $http.delete("/api/assignment/user/" + id)
                 .success(function(response) {
+                    // all users
                     deferred.resolve(response);
                 });
 
-            return deferred.promise();
+            return deferred.promise;
 		}
 
 		function updateUser(id, user) {
@@ -63,10 +67,11 @@
 
             $http.put("/api/assignment/user/" + id, user)
                 .success(function(response) {
+                    // all users
                     deferred.resolve(response);
                 });
 
-            return deferred.promise();
+            return deferred.promise;
 		}
 	}
 })();

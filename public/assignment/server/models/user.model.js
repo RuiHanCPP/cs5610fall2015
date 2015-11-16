@@ -1,6 +1,7 @@
 "use strict";
-var mockUser = require('./user.mock.json');
+
 module.exports = function(app, db) {
+    var mockUser = require('./user.mock.json');
     var apis = {
         createUser: createUser,
         findAllUser: findAllUser,
@@ -13,7 +14,7 @@ module.exports = function(app, db) {
     return apis;
 
     function createUser(user) {
-        mockUser.append(user);
+        mockUser.push(user);
         return mockUser;
     }
 
@@ -34,7 +35,7 @@ module.exports = function(app, db) {
         for (var i = 0; i < mockUser.length; ++i) {
             if (mockUser[i].id === id) {
                 for (var property in user) {
-                    mockUser[i].property = user.property;
+                    mockUser[i][property] = user[property];
                 }
                 mockUser[i].id = id;
                 return mockUser;
@@ -46,7 +47,7 @@ module.exports = function(app, db) {
     function deleteUser(id) {
         for (var i = 0; i < mockUser.length; ++i) {
             if (mockUser[i].id === id) {
-                mockUser.splice(i, i + 1);
+                mockUser.splice(i, 1);
                 return mockUser;
             }
         }

@@ -13,29 +13,34 @@
 					username: $scope.username,
 					password: $scope.password,
 					email: $scope.email,
-					firstname: $scope.firstname,
-					lastname: $scope.lastname
+					firstName: $scope.firstname,
+					lastName: $scope.lastname
 			};
-			UserService.updateUser($rootScope.user.id, user).then(updateUser);
+			// the response is all users
+			UserService
+				.updateUser($rootScope.user.id, user)
+				.then(updateUser);
 		}
 
-		function updateUser(user) {
-			console.log(user);
-			$rootScope.user.username = user.username;
-			$rootScope.user.password = user.password;
-			$rootScope.user.email = user.email;
-			$rootScope.user.firstname = user.firstname;
-			$rootScope.user.lastname = user.lastname;
-			getUserFromRoot();
-			alert("Profile update complete!");
+		function updateUser(users) {
+			UserService
+				.findUserByUsernameAndPassword($scope.username, $scope.password)
+				.then(function(response) {
+					$rootScope.user = response;
+					console.log("after update: ");
+					console.log("first : " + $rootScope.user.firstName);
+					console.log("last : " + $rootScope.user.lastName);
+					getUserFromRoot();
+					alert("Profile update complete!");
+				});
 		}
 
 		function getUserFromRoot() {
 			$scope.username = $rootScope.user.username;
 			$scope.password = $rootScope.user.password;
 			$scope.email = $rootScope.user.email;
-			$scope.firstname = $rootScope.user.firstname;
-			$scope.lastname = $rootScope.user.lastname;
+			$scope.firstname = $rootScope.user.firstName;
+			$scope.lastname = $rootScope.user.lastName;
 		}
 		
 		function init() {

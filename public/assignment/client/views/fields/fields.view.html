@@ -1,10 +1,63 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<h1 class="page-header"> Forms : {{form.title}} </h1>
+<ul class="nav nav-tabs">
+    <li role="presentation"><a href="#/form">Forms</a></li>
+    <li role="presentation" class="active"><a>Fields</a></li>
+</ul>
+<div class="tab-content">
+    <div id="forms" class="tab-pane fade">
+    </div>
+    <div id="fields" class="tab-pane fade in active">
+        <form class="form-horizontal">
+            <div ng-repeat="field in fields" class="form-group">
+                <label for="{{field.id}}" class="control-label">{{field.label}}</label>
+                <div class="row">
+                    <div ng-switch="fieldType(field.type)" class="col-sm-6">
+                        <input ng-switch-when="0" type="text" class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}">
+                        <textarea ng-switch-when="1" class="form-control" rows="5" id="{{field.id}}" placeholder="{{field.placeholder}}"></textarea>
+                        <input ng-switch-when="2" type="date" class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}">
+                        <div ng-switch-when="3" class="col-xs-6">
+                            <select id="{{field.id}}" class="form-control">
+                                <option ng-repeat="option in field.options" value="{{option.value}}">
+                                    {{option.label}}
+                                </option>
+                            </select>
+                        </div>
+                        <div ng-switch-when="4" class="checkbox col-sm-6">
+                            <label ng-repeat="option in field.options">
+                                <input type="checkbox" name="{{field.label}}" value="option.value">{{option.label}}
+                            </label>
+                        </div>
+                        <div ng-switch-when="5" class="radio col-sm-6">
+                            <label ng-repeat="option in field.options">
+                                <input type="radio" name="{{field.label}}" value="option.value">{{option.label}}
+                            </label>
+                        </div>
+                        <input ng-switch-default type="text" class="form-control" id="{{field.id}}" placeholder="{{field.placeholder}}">
+                    </div>
+                    <btn class="btn btn-primary glyphicon glyphicon-pencil"></btn>
+                    <btn class="btn btn-success glyphicon glyphicon-plus"></btn>
+                    <btn ng-click="removeField(field)" class="btn btn-danger glyphicon glyphicon-remove"></btn>
+                    <btn class="btn glyphicon glyphicon-align-justify"></btn>
+                </div>
+            </div>
 
-</body>
-</html>
+            <hr>
+
+            <!--At the bottom of the Fields tab there should be a dropdown field which allows
+            selecting the type of field. Label is Add New Field and options should be Single
+            Line Text, Date, Dropdown, Checkboxes, Radio buttons, Paragraph Text Field.
+            An add field link should be on the right displayed as a plus sign. Use bootstrap
+            component icon -->
+            <div class="form-group">
+                <label for="newfield" class="control-label">Add New Field:</label>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <select ng-model="newField" ng-options="type.label for type in types" id="newfield" class="form-control">
+                        </select>
+                    </div>
+                    <btn ng-click="addField(newField)" class="btn btn-primary glyphicon glyphicon-plus"></btn>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -15,14 +15,25 @@
 					password: $scope.password,
 					email: $scope.email.text,
 				};
+				// This will return a list of all users.
 				UserService.createUser(user).then(createUser);
+			}
+			else {
+				window.alert("Please enter valid information");
 			}
 		}
 
-		function createUser(user) {
-			console.log(user);
-			$rootScope.user = user;
-			$location.path("/profile");
+		function createUser(users) {
+			// look for the current user $scope.username
+			var user = null;
+			UserService
+				.findUserByUsernameAndPassword($scope.username, $scope.password)
+				.then(function(response) {
+					user = response;
+					$rootScope.user = user;
+					$location.path("/profile");
+				});
+
 		}
 		function init() {
 			if ($rootScope.user !== undefined) {

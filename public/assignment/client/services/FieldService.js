@@ -5,7 +5,6 @@
         .factory("FieldService", FieldService);
 
     function FieldService($http, $q) {
-        var forms = [];
         var fieldService = {
             createFieldForForm : createFieldForForm,
             getFieldsForForm : getFieldsForForm,
@@ -20,10 +19,11 @@
 
             $http.post("/api/assignment/form/" + formId + "/field", field)
                 .success(function(response) {
+                    // all fields
                     deferred.resolve(response);
                 });
 
-            return deferred.promise();
+            return deferred.promise;
         }
 
         function getFieldsForForm(formId) {
@@ -31,10 +31,11 @@
 
             $http.get("/api/assignment/form/" + formId + "/field")
                 .success(function(response) {
+                    // all fields
                     deferred.resolve(response);
                 });
 
-            return deferred.promise();
+            return deferred.promise;
         }
 
         function getFieldForForm(formId, fieldId) {
@@ -42,10 +43,11 @@
 
             $http.get("/api/assignment/form/" + formId + "/field/" + fieldId)
                 .success(function(response) {
+                    // one field
                     deferred.resolve(response);
                 });
 
-            return deferred.promise();
+            return deferred.promise;
         }
 
         function deleteFieldFromForm(formId, fieldId) {
@@ -53,10 +55,11 @@
 
             $http.delete("/api/assignment/form/" + formId + "/field/" + fieldId)
                 .success(function(response) {
+                    // remaining fields
                     deferred.resolve(response);
                 });
 
-            return deferred.promise();
+            return deferred.promise;
         }
 
         function updateField(formId, fieldId, field) {
@@ -64,10 +67,11 @@
 
             $http.put("/api/assignment/form/" + formId + "/field/" + fieldId, field)
                 .success(function(response) {
+                    // fields
                     deferred.resolve(response);
                 });
 
-            return deferred.promise();
+            return deferred.promise;
         }
     }
 })();
