@@ -1,69 +1,50 @@
 "use strict";
-module.exports = function(app, model, db) {
+var q = require('q');
+module.exports = function(app, model) {
     app.get("/api/assignment/form/:formId/field", getFieldByFormId);
     app.get("/api/assignment/form/:formId/field/:fieldId", getFieldByFormFieldId);
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldByFormFieldId);
     app.post("/api/assignment/form/:formId/field", createFieldByFormId);
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldByFormFieldId);
 
-    var uuid = require('uuid');
-
     function getFieldByFormId(req, res) {
-        res.json(model.findFieldByFormId(req.params.formId));
-        /*
         model
             .findFieldByFormId(req.params.formId)
             .then(function(fields) {
                 res.json(fields);
             })
-            */
     }
 
     function getFieldByFormFieldId(req, res) {
-        res.json(model.findFieldByFormFieldId(req.params.formId, req.params.fieldId));
-        /*
         model
             .findFieldByFormFieldId(req.params.formId, req.params.fieldId)
             .then(function(field) {
                 res.json(field);
             })
-            */
     }
 
     function deleteFieldByFormFieldId(req, res) {
-        // res: remaining fields
-        res.json(model.deleteFieldByFormFieldId(req.params.formId, req.params.fieldId));
-        /*
         model
             .deleteFieldByFormFieldId(req.params.formId, req.params.fieldId)
             .then(function(fields) {
                 res.json(fields);
             })
-            */
     }
 
     function createFieldByFormId(req, res) {
-        req.body.id = uuid.v1();
-        // res: all fieds of this form
-        res.json(model.createFieldByFormId(req.params.formId, req.body));
-        /*
         model
             .createFieldByFormId(req.body)
             .then(function(fields) {
                 res.json(fields);
             })
-            */
     }
 
     function updateFieldByFormFieldId(req, res) {
-        res.json(model.updateFormByFormFieldId(req.params.formId, req.params.fieldId, req.body));
-        /*
         model
             .updateFormByFormFieldId(req.params.formId, req.params.fieldId, req.body)
             .then(function(fields) {
                 res.json(fields);
             })
-            */
     }
 }
 

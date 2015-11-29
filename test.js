@@ -25,6 +25,50 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 }
 
 var db = mongoose.connect(connectionString);
-require('./public/assignment/server/app.js')(app, db);
+
+var userSchema = mongoose.Schema({
+	"id": String,
+	"firstName": String,
+	"lastName": String,
+	"username": String,
+	"password": String,
+}, {collection: "cs5610.assignment.user"});
+
+var userModel = mongoose.model("cs5610.assignment.user", userSchema);
+
+/*
+userModel.create({id:1233, firstName: "haha", lastName: "hoho", username: "a", password: "b"}, function(err, users) {
+	if (err) {
+		console.err(err);
+	} else {
+		console.log(users);
+	}
+});
+*/
+
+userModel.find(function(err, users) {
+	if (err) {
+		console.err(err);
+	} else {
+		console.log(users.length);
+	}
+});
+/*
+userModel.update({id:1233}, {id:341231231235}, function(err, users) {
+	if (err) {
+		console.err(err);
+	} else {
+		console.log(users);
+	}
+});
+
+userModel.find({username: "alice", password: "alice"}, function(err, user) {
+	if (err) {
+		console.err(err);
+	} else {
+		console.log(user);
+	}
+})
+*/
 
 app.listen(port, ipaddress);

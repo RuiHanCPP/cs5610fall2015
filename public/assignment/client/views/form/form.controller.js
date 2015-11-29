@@ -14,7 +14,7 @@
 			FormService.createFormForUser($rootScope.user.id, {title: $scope.formName}).then(logUpdate);
 			FormService.findAllFormForUser($rootScope.user.id).then(updateForms);
 			console.log($scope.forms);
-		}
+		};
 		
 		$scope.updateForm = function() {
 			if (curForm !== undefined) {
@@ -23,7 +23,7 @@
 				FormService.updateFormById(curForm.id, curForm).then(logUpdate);
 				FormService.findAllFormForUser($rootScope.user.id).then(updateForms);
 			}
-		}
+		};
 		
 		$scope.deleteForm = function($index) {
 			if (curForm !== undefined && $scope.forms[$index].id === curForm.id) {
@@ -32,20 +32,20 @@
 			}
 			FormService.deleteFormById($scope.forms[$index].id).then(logUpdate);
 			FormService.findAllFormForUser($rootScope.user.id).then(updateForms);
-		}
+		};
 		
 		$scope.selectForm = function($index) {
 			curForm = $scope.forms[$index];
 			$scope.formName = curForm.title;
-		}
+		};
 		
 		$scope.disableUpdate = function() {
 			return curForm === undefined || $scope.formName === "";
-		}
+		};
 		
 		$scope.disableAdd = function() {
 			return $scope.formName === "";
-		}
+		};
 		
 		function updateForms(forms) {
 			$scope.forms = forms;

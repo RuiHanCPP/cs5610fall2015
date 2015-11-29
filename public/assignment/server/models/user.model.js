@@ -1,7 +1,10 @@
 "use strict";
+var q = require('q');
+var userSchema = require('./user.schema.js')(mongoose);
 
-module.exports = function(app, db) {
-    var mockUser = require('./user.mock.json');
+module.exports = function(app, mongoose) {
+    var mockUsers = require('./user.mock.json');
+    var userModel = mongoose.model("cs5610.assignment.user", userSchema);
     var apis = {
         createUser: createUser,
         findAllUser: findAllUser,
@@ -11,65 +14,138 @@ module.exports = function(app, db) {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials
     };
+
+    init();
+
     return apis;
 
+    function init() {
+        findAllUser()
+            .then(function(users) {
+                if (users.length == 0) {
+                    for (var i in mockUsers) {
+                        createUser(mockUsers[i])
+                            .then(function(err, users) {
+                                console.log(users);
+                            });
+                    }
+                }
+            });
+    }
+
     function createUser(user) {
-        mockUser.push(user);
-        return mockUser;
+        var deferred = q.defer();
+        userModel.create(user, function(err, users) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                userModel.find(function(err, users) {
+                    if (err) {
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(users);
+                    }
+                });
+            }
+        });
+        return deferred.promise();
     }
 
     function findAllUser() {
-        return mockUser;
+        var deferred = q.defer();
+        userModel.find(function(err, users) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(users);
+            }
+        });
+
+        return deferred.promise();
     }
 
     function findUserById(id) {
-        for (var i = 0; i < mockUser.length; ++i) {
-            if (mockUser[i].id === id) {
-                return mockUser[i];
+        var deferred = q.defer();
+        userModel.findById(id, function(err, user) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(user);
             }
-        }
-        return null;
+        });
+        return deferred.promise();
     }
 
     function updateUser(id, user) {
-        for (var i = 0; i < mockUser.length; ++i) {
-            if (mockUser[i].id === id) {
-                for (var property in user) {
-                    mockUser[i][property] = user[property];
-                }
-                mockUser[i].id = id;
-                return mockUser;
-            }
+        var deferred = q.defer();
+        if (user.id) {
+            delete user.id;
         }
-        return mockUser;
+        userModel.findById(id, function(err, oldUser) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                for (var i in user) {
+                    oldUser[i] = user[i];
+                }
+                oldUser.save(function(err, newUser) {
+                    if (err) {
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(newUser);
+                    }
+                })
+            }
+        });
+        return deferred.promise();
     }
 
     function deleteUser(id) {
-        for (var i = 0; i < mockUser.length; ++i) {
-            if (mockUser[i].id === id) {
-                mockUser.splice(i, 1);
-                return mockUser;
+        var deferred = q.defer();
+        userModel.remove({_id: id}, function(err, users) {
+            if (err) {
+               deferred.reject(err);
+            } else {
+                userModel.find(function(err, users) {
+                    if (err) {
+                       deferred.reject(err);
+                    } else {
+                        userModel.find(function(err, users) {
+                            if (err) {
+                                deferred.reject(err);
+                            } else {
+                                deferred.resolve(users);
+                            }
+                        });
+                    }
+                });
             }
-        }
-        return mockUser;
+        });
+        return deferred.promise();
     }
 
     function findUserByUsername(username) {
-        for (var i = 0; i < mockUser.length; ++i) {
-            if (mockUser[i].username === username) {
-                return mockUser[i];
+        var deferred = q.defer();
+        deferred.findOne({username: username}, function(err, user) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(user);
             }
-        }
-        return null;
+        });
+        return deferred.promise();
     }
 
     function findUserByCredentials(credentials) {
-        for (var i = 0; i < mockUser.length; ++i) {
-            if (mockUser[i].username === credentials.username &&
-                mockUser[i].password === credentials.password) {
-                return mockUser[i];
+        var deferred = q.defer();
+        userModel.findOne({username: credentials.username, password: credentials.password}, function(err, users) {
+            if (err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(users);
             }
-        }
-        return null;
+        });
+
+        return deferred.promise();
     }
-}
+};

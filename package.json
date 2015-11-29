@@ -25,6 +25,8 @@
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "~3.4.4",
+    "mongoose": "^4.2.8",
+    "q": "^1.4.1",
     "uuid": "^2.0.1"
   },
   "devDependencies": {},
