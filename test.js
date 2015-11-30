@@ -27,7 +27,7 @@ if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD) {
 var db = mongoose.connect(connectionString);
 
 var userSchema = mongoose.Schema({
-	"id": String,
+	"_id": String,
 	"firstName": String,
 	"lastName": String,
 	"username": String,
@@ -36,19 +36,18 @@ var userSchema = mongoose.Schema({
 
 var userModel = mongoose.model("cs5610.assignment.user", userSchema);
 
-/*
-userModel.create({id:1233, firstName: "haha", lastName: "hoho", username: "a", password: "b"}, function(err, users) {
+var user = {_id:1233, firstName: "haha", lastName: "hoho", username: "a", password: "b"};
+userModel.create(user, function(err, users) {
 	if (err) {
-		console.err(err);
+		console.log(err);
 	} else {
 		console.log(users);
 	}
 });
-*/
 
 userModel.find(function(err, users) {
 	if (err) {
-		console.err(err);
+		console.log(err);
 	} else {
 		console.log(users.length);
 	}
@@ -56,7 +55,7 @@ userModel.find(function(err, users) {
 /*
 userModel.update({id:1233}, {id:341231231235}, function(err, users) {
 	if (err) {
-		console.err(err);
+		console.log(err);
 	} else {
 		console.log(users);
 	}
@@ -64,7 +63,7 @@ userModel.update({id:1233}, {id:341231231235}, function(err, users) {
 
 userModel.find({username: "alice", password: "alice"}, function(err, user) {
 	if (err) {
-		console.err(err);
+		console.log(err);
 	} else {
 		console.log(user);
 	}

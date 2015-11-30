@@ -27,19 +27,19 @@
             },
             {
                 id: 3,
-                value:"OPTIONS",
+                value:"SELECT",
                 label: "Dropdown Field",
                 name:"New Dropdown"
             },
             {
                 id: 4,
-                value:"CHECKBOXES",
+                value:"CHECKBOX",
                 label: "Checkboxes Field",
                 name:"New Checkboxes"
             },
             {
                 id: 5,
-                value:"RADIOS",
+                value:"RADIO",
                 label: "Radio Buttons Field",
                 name:"New Radio Buttons"
             }
@@ -56,6 +56,7 @@
             FormService
                 .findFormById($scope.formId)
                 .then(function(form) {
+                    console.log(form);
                     $scope.form = form;
                     $scope.fields = form.fields;
                 });

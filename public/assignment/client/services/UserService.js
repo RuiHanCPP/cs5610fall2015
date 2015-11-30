@@ -19,7 +19,6 @@
 
             $http.get("/api/assignment/user?username=" + username + "&password=" + password)
                 .success(function(response) {
-                    // single user
                     deferred.resolve(response);
                 });
 

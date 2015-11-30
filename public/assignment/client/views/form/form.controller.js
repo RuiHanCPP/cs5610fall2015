@@ -51,8 +51,7 @@
 			$scope.forms = forms;
 			$scope.formName = "";
 			curForm = undefined;
-            console.log("forms now:");
-			console.log($scope.forms);
+            console.log("forms now: " + $scope.forms);
 		}
 		function logUpdate(form) {
 			console.log(form);

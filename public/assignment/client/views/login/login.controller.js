@@ -10,11 +10,11 @@
 
 		$scope.login = function() {
 			UserService.findUserByUsernameAndPassword($scope.username, $scope.password).then(userGetter);
-		}
+		};
 
 		function userGetter(res) {
 			console.log(res);
-			if (res != undefined) {
+			if (res != null) {
 				$rootScope.user = res;
 				$location.path("/profile");
 			} else {

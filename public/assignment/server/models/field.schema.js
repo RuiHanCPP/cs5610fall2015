@@ -1,11 +1,12 @@
 "use strict";
 module.exports = function(mongoose) {
 
-    var fieldSchema = mongoose.schema({
+    var fieldSchema = mongoose.Schema({
+        id: String,
         label: String,
         type: {
             type: String,
-            enum: ["TEXT, TEXTAREA, RADIO, CHECKBOX, SELECT, DATE"]
+            enum: ["TEXT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "DATE"]
         },
         options: [{
             label: String,

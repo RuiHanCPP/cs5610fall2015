@@ -33,7 +33,7 @@ module.exports = function(app, model) {
 
     function createFieldByFormId(req, res) {
         model
-            .createFieldByFormId(req.body)
+            .createFieldByFormId(req.params.formId, req.body)
             .then(function(fields) {
                 res.json(fields);
             })
@@ -46,5 +46,5 @@ module.exports = function(app, model) {
                 res.json(fields);
             })
     }
-}
+};
 
