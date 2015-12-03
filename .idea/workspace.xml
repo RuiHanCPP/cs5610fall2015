@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="798117e7-42d3-4914-ad05-3531e112cfdf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/project/server/services/tag.srevice.js" />
-      <change type="DELETED" beforePath="C:\Users\Rui\Desktop\CS5610\openshift\cs5610\public\project\server\service\tag.srevice.js" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Rui\Desktop\CS5610\openshift\cs5610\public\project\server\model\comment.model.js" afterPath="$PROJECT_DIR$/public/project/server/models/comment.model.js" />
-      <change type="MOVED" beforePath="C:\Users\Rui\Desktop\CS5610\openshift\cs5610\public\project\server\model\comment.schema.js" afterPath="$PROJECT_DIR$/public/project/server/models/comment.schema.js" />
-      <change type="MOVED" beforePath="C:\Users\Rui\Desktop\CS5610\openshift\cs5610\public\project\server\model\document.model.js" afterPath="$PROJECT_DIR$/public/project/server/models/document.model.js" />
-      <change type="MOVED" beforePath="C:\Users\Rui\Desktop\CS5610\openshift\cs5610\public\project\server\model\document.schema.js" afterPath="$PROJECT_DIR$/public/project/server/models/document.schema.js" />
-      <change type="MOVED" beforePath="C:\Users\Rui\Desktop\CS5610\openshift\cs5610\public\project\server\model\superUser.model.js" afterPath="$PROJECT_DIR$/public/project/server/models/superUser.model.js" />
-      <change type="MOVED" beforePath="C:\Users\Rui\Desktop\CS5610\openshift\cs5610\public\project\server\model\superUser.schema.js" afterPath="$PROJECT_DIR$/public/project/server/models/superUser.schema.js" />
-      <change type="MOVED" beforePath="C:\Users\Rui\Desktop\CS5610\openshift\cs5610\public\project\server\model\tag.model.js" afterPath="$PROJECT_DIR$/public/project/server/models/tag.model.js" />
-      <change type="MOVED" beforePath="C:\Users\Rui\Desktop\CS5610\openshift\cs5610\public\project\server\model\tag.schema.js" afterPath="$PROJECT_DIR$/public/project/server/models/tag.schema.js" />
-      <change type="MOVED" beforePath="C:\Users\Rui\Desktop\CS5610\openshift\cs5610\public\project\server\service\document.service.js" afterPath="$PROJECT_DIR$/public/project/server/services/document.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cs5610.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,11 +26,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
-              <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.56856185" vertical-offset="0" max-vertical-offset="897">
+              <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -68,10 +66,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="comment.service.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="comment.service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/project/server/services/comment.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47380155" vertical-offset="0" max-vertical-offset="901">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
               <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
               <folding />
             </state>
@@ -338,7 +336,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -384,14 +382,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/assignment/server/models/form.model.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="113" column="40" selection-start-line="113" selection-start-column="40" selection-end-line="113" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assignment/client/views/header/header.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36042404" vertical-offset="0" max-vertical-offset="0">
@@ -742,14 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
-          <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/project/server/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17056856" vertical-offset="0" max-vertical-offset="897">
@@ -760,8 +742,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/project/server/services/comment.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47380155" vertical-offset="0" max-vertical-offset="901">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
           <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56856185" vertical-offset="0" max-vertical-offset="897">
+          <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
           <folding />
         </state>
       </provider>
