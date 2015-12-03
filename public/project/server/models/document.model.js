@@ -41,9 +41,9 @@ module.exports = function(app, mongoose) {
                 if (debugB) {
                    console.log("get new doc " + newDoc.title);
                 }
-                for (var i in tags) {
-                    tagModel.addDocIToTag(tags[i], doc._id).then(function(tag) {
-                        if (debug) {
+                for (var i in newDoc.tags) {
+                    tagModel.addDocIdToTag(tags[i], doc._id).then(function(tag) {
+                        if (debugA) {
                             for (var j in tag.docIds) {
                                 if (tag.docIds[j] == doc._id) {
                                     console.log("found doc id in tag's doc list");
@@ -105,7 +105,7 @@ module.exports = function(app, mongoose) {
     function updateDoc(docId, document) {
         var deferred = q.defer();
         delete document._id;
-        delete docuemtn.comments;
+        delete document.comments;
         document.date = new Date();
         docModel.findOne({_id: docId}, function(err, doc) {
             if (err) {
@@ -396,7 +396,7 @@ module.exports = function(app, mongoose) {
     }
 
     function updateDocIdToTag(oldTags, newTags, docId) {
-        // update the tags if needed, to tag model
+        // update the tags if needed, to tag models
         for (var i in oldTags) {
             var index = newTags.indexOf(oldTags[i]);
             if (index == -1) {

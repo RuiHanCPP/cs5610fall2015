@@ -8,14 +8,6 @@ module.exports = function(mongoose) {
             type: Schema.ObjectId
         },
         tagName: String,
-        parentTagId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'cs5610.project.tag'
-        },
-        childTagIds: [{
-           type: mongoose.Schema.Types.ObjectId,
-            ref: 'cs5610.project.tag'
-        }],
         docIds: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'cs5610.project.document'

@@ -4,6 +4,7 @@ var q = require('q');
 module.exports = function(app, mongoose) {
     var commentSchema = require('./comment.schema.js');
     var commentModel = mongoose.model('commentModel', commentSchema);
+    var docModel = require('./document.model.js');
     var debugA = true;
     var debugB = false;
 
@@ -30,6 +31,7 @@ module.exports = function(app, mongoose) {
                 if (debugB) {
                     console.log("comment created " + newCommet);
                 }
+                docModel.addCommentIdToDoc(newComment.docId, newComment._id).then(function(res){});
                 deferred.resolve(newComment);
             }
         });
@@ -38,6 +40,16 @@ module.exports = function(app, mongoose) {
 
     function deleteComment(cId) {
         var deferred = q.defer();
+        commentModel.findOne({_id: cid}, function(err, comment) {
+            if (err) {
+                if (debugA) {
+                    console.log("cannot find comment while deleting " + err);
+                }
+                deferred.reject();
+            } else {
+                docModel.deleteCommentIdFromDoc(comment.docId, comment._id).then(function(res){});
+            }
+        });
         commentModel.remove({_id: cId}, function(err, res) {
             if (err) {
                 if (debugA) {

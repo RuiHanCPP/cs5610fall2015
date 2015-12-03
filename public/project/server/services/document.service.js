@@ -57,7 +57,6 @@ module.exports = function(app, docModel) {
 
     function createDocument(req, res) {
         var doc = req.body;
-        var tags = doc.tags;
         docModel
             .createDoc(doc)
             .then(function(doc) {

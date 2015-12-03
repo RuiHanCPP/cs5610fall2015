@@ -1,0 +1,16 @@
+This readme talks about the architechture of the server side models/services.
+Document holds a list of tag id it's taged to, a list of comment id it contains. However tag and comment are separate schemas.
+Tag schema holds a list of document id which has this tag, and also a parent tag id.
+Comment schema holds the comment id this comment referred to, could be null.
+
+When creating a document, it has to notify tag model that this document have this particular tag id.
+when deleting a document, it has to notify tag model that this document no longer have this tag id.
+when deleting a document, its comments should also be delete
+when updating a document, it may have to notify tag model that this document have or not have this tag id.
+
+when creating a comment, it has to notify document that it has a new comment now.
+when deleting a comment, it has to notify document that it no longer has this comment.
+
+when merging a tag, all the tags that are the children of it should change its parent to another tag.
+when merging a tag, all the document that has this tag should be changed to another tag.
+when changing parent tag, its parent should also be notified that it no longer have this tag as child 
