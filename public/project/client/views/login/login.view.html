@@ -1,0 +1,39 @@
+<section id="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Login</h2>
+            </div>
+        </div>
+        <div class="row">
+            <form name="myForm" class="form-horizontal">
+                <div class="col-lg-8 col-lg-offset-2 control-group">
+                    <div class="row">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Username</label>
+                            <input ng-model="username" type="text" class="form-control" placeholder="Username" id="username" required data-validation-required-message="Please enter username.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <label>Password</label>
+                            <input ng-model="password" type="password" class="form-control" placeholder="password" id="password" required data-validation-required-message="Please enter correct password.">
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <br>
+                    <div ng-if="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <button ng-click="login()" class="btn btn-primary btn-lg pull-right btn-block">Login</button>
+                        </div>
+                        <div class="col-lg-2">
+                            <a href="#/signUp"><button class="btn btn-success btn-lg pull-right btn-block">Sign Up</button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

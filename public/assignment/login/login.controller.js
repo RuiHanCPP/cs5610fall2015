@@ -10,7 +10,7 @@
 
 		$scope.login = function() {
 			UserService.findUserByUsernameAndPassword($scope.username, $scope.password, userGetter);
-		}
+		};
 
 		function userGetter(res) {
 			console.log(res);

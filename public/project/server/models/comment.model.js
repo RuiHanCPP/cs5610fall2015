@@ -2,9 +2,8 @@
 var q = require('q');
 
 module.exports = function(app, mongoose) {
-    var commentSchema = require('./comment.schema.js');
+    var commentSchema = require('./comment.schema.js')(mongoose);
     var commentModel = mongoose.model('commentModel', commentSchema);
-    var docModel = require('./document.model.js');
     var debugA = true;
     var debugB = false;
 
@@ -12,7 +11,6 @@ module.exports = function(app, mongoose) {
         createComment: createComment,
         deleteComment: deleteComment,
         findAllComment: findAllComment,
-        findAllCommentByDocId: findAllCommentByDocId,
         findCommentById: findCommentById
     };
 
@@ -20,7 +18,7 @@ module.exports = function(app, mongoose) {
 
     function createComment(comment) {
         var deferred = q.defer();
-        delete comment._id;
+        delete comment.id;
         commentModel.create(comment, function(err, newComment) {
             if (err) {
                 if (debugA) {
@@ -29,9 +27,8 @@ module.exports = function(app, mongoose) {
                 deferred.reject();
             } else {
                 if (debugB) {
-                    console.log("comment created " + newCommet);
+                    console.log("comment created " + newComment);
                 }
-                docModel.addCommentIdToDoc(newComment.docId, newComment._id).then(function(res){});
                 deferred.resolve(newComment);
             }
         });
@@ -40,16 +37,6 @@ module.exports = function(app, mongoose) {
 
     function deleteComment(cId) {
         var deferred = q.defer();
-        commentModel.findOne({_id: cid}, function(err, comment) {
-            if (err) {
-                if (debugA) {
-                    console.log("cannot find comment while deleting " + err);
-                }
-                deferred.reject();
-            } else {
-                docModel.deleteCommentIdFromDoc(comment.docId, comment._id).then(function(res){});
-            }
-        });
         commentModel.remove({_id: cId}, function(err, res) {
             if (err) {
                 if (debugA) {
@@ -89,24 +76,6 @@ module.exports = function(app, mongoose) {
             } else {
                 if (debugB) {
                     console.log("found all the comments, totally " + comments.length);
-                }
-                deferred.resolve(comments);
-            }
-        });
-        return deferred.promise;
-    }
-
-    function findAllCommentByDocId(docId) {
-        var deferred = q.defer();
-        commentModel.find({docId: docId}, function(err, comments) {
-            if (err) {
-                if (debugA) {
-                    console.log("cannot find all comments under document " + docId + " " + err);
-                }
-                deferred.reject();
-            } else {
-                if (debugB) {
-                    console.log("found " + comments.length + " comments under doc " + docId);
                 }
                 deferred.resolve(comments);
             }

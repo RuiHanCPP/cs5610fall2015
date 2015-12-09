@@ -1,0 +1,24 @@
+<section id="mergeTags">
+    <div class="container">
+        <div class="col-lg-12 text-center">
+            <form class="form-inline">
+                <div class="button-wrapper" ng-repeat="tag in tags">
+                    <label class="form-group">
+                        <input type="checkbox" ng-model="selection.ids[tag._id]"> {{tag.tagName}}
+                    </label>
+                </div>
+            </form>
+            <form class="form-inline">
+                <div class="form-group floating-label-form-group row">
+                    <label for="tag">Name of new tag</label>
+                    <input ng-model="newName" type="text" class="form-control" id="tag" placeholder="your new tag name">
+                </div>
+                <div class="form-group">
+                    <button ng-click="merge()" class="btn btn-primary pull-right btn-block">Merge two tags!</button>
+                </div>
+            </form>
+            <div ng-if="error()" class="alert alert-danger">{{errorMessage}}</div>
+            <div ng-if="successMessage" class="alert alert-success">{{successMessage}}</div>
+        </div>
+    </div>
+</section>

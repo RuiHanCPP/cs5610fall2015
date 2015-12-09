@@ -1,22 +1,16 @@
 "use strict";
 module.exports = function(mongoose) {
+    var random = require('mongoose-random');
     var docSchema = mongoose.Schema({
-        _id: {
-            type: Schema.ObjectId
-        },
         title: String,
-        date: String,
+        date: Date,
         snapShot: String,
         content: String,
-        tags: [{
-            type: Schema.Types.ObjectId,
-            ref: "cs5610.project.tag"
-        }],
-        comments: [{
-            type: Schema.Types.ObjectId,
-            ref: "cs5610.project.comment"
-        }]
+        tags: [String],
+        comments: [String],
+        userId: String
     }, {collection: "cs5610.project.document"});
+    docSchema.plugin(random, { path: 'r' });
 
     return docSchema;
 };

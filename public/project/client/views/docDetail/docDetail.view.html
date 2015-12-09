@@ -1,0 +1,57 @@
+<section id="docDetail">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="button-wrapper" ng-repeat="tag in tags">
+                    <label class="form-group">
+                        <a href="#/doc/byTags">{{tag.tagName}} </a>
+                    </label>
+                </div>
+                <h3>{{doc.title}}</h3>
+                <p>{{doc.snapShot}}</p>
+                <p><a ng-href="#/profile/{{author._id}}">{{author.nickName}}</a></p>
+                <p>{{doc.content}}</p>
+                <p ng-if="canEdit"><a class="btn btn-primary btn-lg" ng-href="#/doc/detail/{{doc._id}}/edit" role="button">edit</a></p>
+            </div>
+        </div>
+        <br>
+        <div ng-if="canComment">
+            <div class="col-lg-12 text-center">
+                <h2>Comments</h2>
+            </div>
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="button-wrapper media" ng-repeat="c in comments">
+                    <div class="media-body">
+                        <div class="well">
+                            <div class="media-heading">
+                                <p><a ng-href="#/profile/{{c.userId}}">{{c.nickName}}</a></p>
+                                <p>{{c.content}}</p>
+                            </div>
+                            <button ng-click="reply($index)" class="btn btn-link">Reply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Message</label>
+                                <textarea ng-model="$parent.replyMessage" rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <br>
+                        <div id="success"></div>
+                        <div class="row">
+                            <button ng-click="sendReply()" class="btn btn-primary btn-lg">Send</button>
+                            <button ng-click="cancelReply()" class="btn btn-success btn-lg">Clear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

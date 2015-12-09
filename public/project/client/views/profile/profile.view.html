@@ -1,0 +1,29 @@
+<!-- About Section -->
+<section id="profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <img class="img-responsive" ng-src="{{user.avatar}}" alt="Responsive image">
+                <h2>{{user.nickName}}</h2>
+                <h3>About me:</h3>
+                <hr class="star-light">
+                <p>{{user.selfDesc}}</p>
+                <strong class="text-primary">{{isAdmin.message}}</strong>
+                <strong ng-if="adminView" class="text-primary">username: {{user.username}}</strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <p>{{selfDesc}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <p>{{selfDesc}}</p>
+                <div ng-if="sameUser && user.newComments.length > 0" ng-repeat="d in docs">
+                    <p>You have new comment in <a ng-click="readComment($index)">{{d.title}}</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

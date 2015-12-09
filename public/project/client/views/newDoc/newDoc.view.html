@@ -1,0 +1,36 @@
+<section id="newDoc">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <form class="form-inline">
+                    <div class="button-wrapper" ng-repeat="tag in tags">
+                        <label class="form-group">
+                            <input type="checkbox" ng-model="selection.ids[tag._id]"> {{tag.tagName}}
+                        </label>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group floating-label-form-group row control-group">
+                        <label for="tag">Name of new tag</label>
+                        <input ng-model="newTag.tagName" type="text" class="form-control" id="tag" placeholder="your new tag name" required data-validation-required-message="Please specify tag name.">
+                    </div>
+                    <div class="form-group">
+                        <button ng-click="createTag()" class="btn btn-primary pull-right btn-block">Create new Tag!</button>
+                    </div>
+                </form>
+                <form name="myForm" class="form-horizontal">
+                    <input ng-model="doc.title" type="text" class="form-control" placeholder="title" id="title">
+                    <br>
+                    <textarea ng-model="doc.snapShot" rows="5" class="form-control" placeholder="snapshot" id="snapshot"></textarea>
+                    <br>
+                    <textarea ng-model="doc.content" rows="5" class="form-control" placeholder="mainContent" id="mainContent"></textarea>
+                    <br>
+                    <button ng-click="confirm()" class="btn btn-danger btn-lg">Confirm</button>
+                    <button ng-click="cancel()" class="btn btn-success btn-lg">Cancel</button>
+                    <br>
+                    <div class="alert alert-danger" ng-if="errorMessage" role="alert">{{errorMessage}}</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+<section id="docByTags">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <ul class="nav nav-tabs nav-justified">
+                    <li role="presentation"><a href="#/doc/byTime/">By Time</a></li>
+                    <li role="presentation" class="active"><a href="#/doc/byTags/">By Tags</a></li>
+                </ul>
+                <form class="form-inline">
+                    <div class="button-wrapper" ng-repeat="tag in tags">
+                        <label class="form-group">
+                            <input type="checkbox" ng-model="selection.ids[tag._id]"> {{tag.tagName}}
+                        </label>
+                    </div>
+                    <div ng-if="hasUser" class="form-group">
+                        <input type="checkbox" ng-model="ownDoc.value"> Find my own doc only
+                    </div>
+
+                    <div class="form-group">
+                        <button ng-click="search()" class="btn btn-primary pull-right btn-block">Search</button>
+                    </div>
+                </form>
+                <div ng-repeat="doc in docList">
+                    <div class="jumbotron col-lg-6">
+                        <h3>{{doc.title}}</h3>
+                        <p>{{doc.snapShot}}</p>
+                        <p>{{doc.date | date:'medium'}}</p>
+                        <p><a ng-href="#/profile/{{doc.userId}}">{{doc.username}}</a></p>
+                        <p><a class="btn btn-primary btn-lg" ng-href="#/doc/detail/{{doc._id}}" role="button">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

@@ -25,7 +25,9 @@
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "~3.4.4",
+    "moment": "^2.10.6",
     "mongoose": "^4.2.8",
+    "mongoose-random": "^0.1.1",
     "q": "^1.4.1",
     "uuid": "^2.0.1"
   },

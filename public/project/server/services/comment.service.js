@@ -1,16 +1,25 @@
 "use strict";
-module.exports = function(app, commentModel) {
+module.exports = function(app, commentModel, docModel) {
     app.get("/api/project/comment", getComment);
     app.get("/api/project/comment/:id", getCommentById);
     app.post("/api/project/comment", createComment);
-    app.delete("/api/project/comment", deleteComment);
 
     function getComment(req, res) {
         if (req.query.docId) {
-            commentModel
-                .findAllCommentByDocId(req.query.docId)
-                .then(function(comment) {
-                    res.json(comment);
+            var comments = [];
+            docModel
+                .findDocById(req.query.docId)
+                .then(function(doc) {
+                    for (var i = 0; i < doc.comments.length; ++i) {
+                        commentModel
+                            .findCommentById(doc.comments[i])
+                            .then(function(comment) {
+                                comments.push(comment);
+                                if (comments.length == doc.comments.length) {
+                                    res.json(comments);
+                                }
+                            });
+                    }
                 });
         } else {
             commentModel
@@ -33,15 +42,11 @@ module.exports = function(app, commentModel) {
         commentModel
             .createComment(req.body)
             .then(function(comment) {
-                res.json(comment);
-            });
-    }
-
-    function deleteComment(req, res) {
-        commentModel
-            .deleteComment(req.params.id)
-            .then(function(sizeOfComments) {
-                res.json(sizeOfComments);
+                docModel
+                    .addCommentIdToDoc(comment.docId, comment.id)
+                    .then(function(newDoc) {
+                        res.json(comment);
+                    });
             });
     }
 };

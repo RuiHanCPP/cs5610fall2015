@@ -1,0 +1,19 @@
+<section id="manageUsers">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div ng-repeat="user in users">
+                    <div class="jumbotron col-lg-6">
+                        <h3>{{user.nickName}}</h3>
+                        <p>{{user.username}}</p>
+                        <p>{{user.selfDesc}}</p>
+                        <p ng-if="user.isAdmin">{{user.username}} is an admin</p>
+                        <p ng-if="!user.isAdmin">{{user.username}} is not an admin</p>
+                        <p ng-if="!user.isAdmin"><a class="btn btn-primary btn-lg" ng-click="toAdmin($index)" role="button">Set as admin</a></p>
+                        <p ng-if="user.isAdmin"><a class="btn btn-primary btn-lg" ng-click="toNormalUser($index)" role="button">Set as normal user</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -4,14 +4,11 @@
 
 module.exports = function(mongoose) {
     var tagSchema = mongoose.Schema({
-        _id: {
-            type: Schema.ObjectId
-        },
-        tagName: String,
-        docIds: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'cs5610.project.document'
-        }]
+        tagName: {
+            type: String,
+            required: true,
+            unique: true
+        }
     }, {collection: "cs5610.project.tag"});
 
     return tagSchema;

@@ -1,0 +1,59 @@
+<section id="editProfile">
+    <div class="container">
+        <form name="myForm" class="form-horizontal">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h3>Edit your profile</h3>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>new nick name</label>
+                        <input ng-model="nickName" type="text" class="form-control" placeholder="new nick name" id="nickname">
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>new Password</label>
+                        <input ng-model="passwordB" type="password" class="form-control" placeholder="re-enter new password" id="passwordB">
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Re-enter new password</label>
+                        <input ng-model="passwordB" type="password" class="form-control" placeholder="re-enter your password" id="password2">
+                        <p ng-hide="passwordMatch()" class="help-block text-danger">Password doesn't match</p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>new Email</label>
+                        <input ng-model="email.text" type="email" class="form-control" placeholder="example@my.com" id="email" name="emailInput">
+                        <p ng-hide="validEmail" class="help-block text-danger">This email has been used</p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Avatar url</label>
+                        <input ng-model="imageUrl" type="text" class="form-control" placeholder="your new avatar url" id="url" name="url">
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Self description</label>
+                        <textarea ng-model="selfDesc" rows="5" class="form-control" placeholder="about me.." id="selfDesc"></textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-2">
+                        <button ng-click="confirm()" class="btn btn-danger btn-lg pull-right btn-block">Confirm</button>
+                    </div>
+                    <div class="col-lg-2">
+                        <button ng-click="cancel()" class="btn btn-success btn-lg pull-right btn-block">Cancel</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <p ng-if="updated" class="help-block alert alert-success">Profile updated!</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

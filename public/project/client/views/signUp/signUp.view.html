@@ -1,0 +1,57 @@
+<section id="signUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Sign up</h2>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <form name="myForm" class="form-horizontal">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Username</label>
+                                <input ng-model="username" type="text" class="form-control" placeholder="Username" id="username" required data-validation-required-message="Please enter username.">
+                                <p ng-hide="validUsername" class="alert alert-danger">This username has been used</p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Nickname</label>
+                                <input ng-model="nickname" type="text" class="form-control" placeholder="your nick name" id="nickname" required data-validation-required-message="Please enter username.">
+                                <p ng-hide="validUsername" class="alert alert-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Password</label>
+                                <input ng-model="passwordA" type="password" class="form-control" placeholder="password" id="password1" required data-validation-required-message="Please enter correct password.">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Re-enter password</label>
+                                <input ng-model="passwordB" type="password" class="form-control" placeholder="re-enter your password" id="password2" required>
+                                <p ng-hide="passwordMatch()" class="help-block text-primary">Password doesn't match</p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Email</label>
+                                <input ng-model="email.text" type="email" class="form-control" placeholder="example@my.com" id="email" name="emailInput" required>
+                                <p ng-hide="validEmail" class="alert alert-danger">This email has been used</p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <button ng-click="signUp()" class="btn btn-success btn-lg pull-right btn-block">Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</section>

@@ -2,9 +2,7 @@
 var q = require('q');
 
 module.exports = function(app, mongoose) {
-    var tagModel = require('./tag.model.js');
-    var commentModel = require('./comment.model.js');
-    var docSchema = require('./document.schema.js');
+    var docSchema = require('./document.schema.js')(mongoose);
     var docModel = mongoose.model('documentModel', docSchema);
     var debugA = true;
     var debugB = false;
@@ -17,19 +15,21 @@ module.exports = function(app, mongoose) {
         findDocById: findDocById,
         findDocByTime: findDocByTime,
         findDocByTitle: findDocByTitle,
+        findDocByTags: findDocByTags,
+        findDocByUserId: findDocByUserId,
+        findDocByRandom: findDocByRandom,
+        mergeTagInDoc: mergeTagInDoc,
         addCommentIdToDoc: addCommentIdToDoc,
-        deleteCommentIdFromDoc: deleteCommentIdFromDoc,
-        addTagIdToDoc: addTagIdToDoc,
-        deleteTagIdFromDoc: deleteTagIdFromDoc,
-        mergeTagInDoc: mergeTagInDoc
+        deleteCommentIdFromDoc: deleteCommentIdFromDoc
     };
 
     return apis;
 
     function createDoc(document) {
-        delete document._id;
+        delete document.id;
         var deferred = q.defer();
         document.date = new Date();
+        document.tags.sort();
         docModel.create(document, function(err, newDoc) {
             if (err) {
                 if (debugA) {
@@ -41,18 +41,6 @@ module.exports = function(app, mongoose) {
                 if (debugB) {
                    console.log("get new doc " + newDoc.title);
                 }
-                for (var i in newDoc.tags) {
-                    tagModel.addDocIdToTag(tags[i], doc._id).then(function(tag) {
-                        if (debugA) {
-                            for (var j in tag.docIds) {
-                                if (tag.docIds[j] == doc._id) {
-                                    console.log("found doc id in tag's doc list");
-                                    break;
-                                }
-                            }
-                        }
-                    });
-                }
                 deferred.resolve(newDoc);
             }
         });
@@ -61,22 +49,6 @@ module.exports = function(app, mongoose) {
 
     function deleteDoc(docId) {
         var deferred = q.defer();
-        docModel.findOne({id: docId}, function(err, doc) {
-            if (err) {
-                if (debugA) {
-                    console.log("rejected while searching doc: " + err);
-                }
-                deferred.reject();
-            } else {
-                for (var i in doc.tags) {
-                    tagModel.deleteDocIdFromTag(doc.tags[i], docId)
-                        .then(function(tag) {});
-                }
-                for (var i in doc.comments) {
-                    commentModel.deleteComment(doc.comments[i]).then(function(){});
-                }
-            }
-        });
         docModel.delete({_id: docId}, function(err, respond) {
             if (err) {
                 if (debugA) {
@@ -104,10 +76,12 @@ module.exports = function(app, mongoose) {
 
     function updateDoc(docId, document) {
         var deferred = q.defer();
-        delete document._id;
+        delete document.id;
         delete document.comments;
+        delete document.userId;
         document.date = new Date();
-        docModel.findOne({_id: docId}, function(err, doc) {
+        document.tags.sort();
+        docModel.findOne({id: docId}, function(err, doc) {
             if (err) {
                 if (debugA) {
                     console.log("rejected while finding one: " + err);
@@ -131,7 +105,6 @@ module.exports = function(app, mongoose) {
                             console.log("doc saved" + newDoc.date);
                         }
                         deferred.resolve(newDoc);
-                        updateDocIdToTag(doc.tags, newDoc.tags, newDoc._id);
                     }
                 });
             }
@@ -178,17 +151,17 @@ module.exports = function(app, mongoose) {
     function findDocByTime(startDate, endDate) {
         var deferred = q.defer();
         if (startDate == null) {
-            startDate = new Date(2015, 12, 1);
+            startDate = new Date(0);
+        } else {
+            startDate = new Date(startDate);
         }
         if (endDate == null) {
             endDate = new Date();
+        } else {
+            endDate = new Date(endDate);
         }
-        docModel.find({
-            $and: [
-                {date: {$gte: startDate}},
-                {date: {$lt: endDate}}
-            ]
-        }, function(err, docs) {
+
+        docModel.find({date: {$gte: startDate, $lte: endDate}}, function(err, docs) {
             if (err) {
                 if (debugA) {
                     console.log("rejected while finding doc by time: " + startDate + " - " + endDate + " " + err);
@@ -222,6 +195,113 @@ module.exports = function(app, mongoose) {
         return deferred.promise;
     }
 
+    function findDocByRandom() {
+        var deferred = q.defer();
+        docModel.findRandom().limit(1).exec(function (err, docs) {
+            if (docs.length > 0) {
+                deferred.resolve(docs[0]);
+            } else {
+                deferred.resolve(null);
+            }
+
+        });
+        return deferred.promise;
+    }
+
+    function mergeTagInDoc(docId, oldTag, newTag) {
+        var deferred = q.defer();
+        docModel.findOne({_id: docId}, function(err, doc) {
+            if (err) {
+                if (debugA) {
+                    console.log("rejected while finding one: " + err);
+                }
+                deferred.reject();
+            } else {
+                if (debugB) {
+                    console.log("found one doc when merging: " + doc.title);
+                }
+                for (var i in doc.tags) {
+                    if (doc.tags[i] == oldTag) {
+                        doc.tags[i] = newTag;
+                    } else if (doc.tags[i] == newTag) {
+                        doc.tags.splice(i, 1);
+                    }
+                }
+                doc.tags.sort();
+                doc.save(function(err, newDoc) {
+                    if (err) {
+                        if (debugA) {
+                            console.log("rejected while saving doc: " + err);
+                        }
+                        deferred.reject();
+                    } else {
+                        if (debugB) {
+                            console.log("doc with tag id merged");
+                        }
+                        deferred.resolve(newDoc);
+                    }
+                });
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findDocByTags(tagIds) {
+        var deferred = q.defer();
+        var foundDocs = [];
+        tagIds.sort();
+        docModel.find(function(err, docs) {
+            if (err) {
+                if (debugA) {
+                    console.log("cannot find all docs when find by tag " + err);
+                }
+                deferred.reject();
+            } else {
+                if (debugB) {
+                    console.log("found all " + docs.length + " docs");
+                }
+                for (var i in docs) {
+                    var numOfMatch = 0;
+                    var j, k;
+                    for (j = 0, k = 0; j < docs[i].tags.length && k < tagIds.length;) {
+                        if (docs[i].tags[j] < tagIds[k]) {
+                            ++j;
+                        } else if (docs[i].tags[j] > tagIds[k]) {
+                            break;
+                        } else {
+                            ++numOfMatch;
+                            ++j;
+                            ++k;
+                        }
+                    }
+                    if (numOfMatch == tagIds.length) {
+                        foundDocs.push(docs[i]);
+                    }
+                }
+                deferred.resolve(foundDocs);
+            }
+        });
+        return deferred.promise;
+    }
+
+    function findDocByUserId(userId) {
+        var deferred = q.defer();
+        docModel.find({userId: userId}, function(err, docs) {
+            if (err) {
+                if (debugA) {
+                    console.log("cannot find all docs when find by user " + err);
+                }
+                deferred.reject();
+            } else {
+                if (debugB) {
+                    console.log("found all " + docs.length + " docs");
+                }
+                deferred.resolve(docs);
+            }
+        });
+        return deferred.promise;
+    }
+
     function addCommentIdToDoc(docId, commentId) {
         var deferred = q.defer();
         docModel.findOne({_id: docId}, function(err, doc) {
@@ -243,7 +323,7 @@ module.exports = function(app, mongoose) {
                         deferred.reject();
                     } else {
                         if (debugB) {
-                            console.log("doc updated with new comment, now: " + doc.comments.length);
+                            console.log("doc updated with new comment, now: " + newDoc.comments.length);
                         }
                         deferred.resolve(newDoc);
                     }
@@ -281,7 +361,7 @@ module.exports = function(app, mongoose) {
                         deferred.reject();
                     } else {
                         if (debugB) {
-                            console.log("doc deleted one comment, now: " + doc.comments.length);
+                            console.log("doc deleted one comment, now: " + newDoc.comments.length);
                         }
                         deferred.resolve(newDoc);
                     }
@@ -289,124 +369,5 @@ module.exports = function(app, mongoose) {
             }
         });
         return deferred.promise;
-    }
-
-    function addTagIdToDoc(docId, tagId) {
-        var deferred = q.defer();
-        docModel.findOne({_id: docId}, function(err, doc) {
-            if (err) {
-                if (debugA) {
-                    console.log("rejected while finding one: " + err);
-                }
-                deferred.reject();
-            } else {
-                if (debugB) {
-                    console.log("found one doc: " + doc.title);
-                }
-                doc.tags.push(tagId);
-                doc.save(function(err, newDoc) {
-                    if (err) {
-                        if (debugA) {
-                            console.log("rejected while saving doc: " + err);
-                        }
-                        deferred.reject();
-                    } else {
-                        if (debugB) {
-                            console.log("doc updated with new tag, now: " + doc.tags.length);
-                        }
-                        deferred.resolve(newDoc);
-                    }
-                });
-            }
-        });
-        return deferred.promise;
-    }
-
-    function deleteTagIdFromDoc(docId, tagId) {
-        var deferred = q.defer();
-        docModel.findOne({_id: docId}, function(err, doc) {
-            if (err) {
-                if (debugA) {
-                    console.log("rejected while finding one: " + err);
-                }
-                deferred.reject();
-            } else {
-                if (debugB) {
-                    console.log("found one doc: " + doc.title);
-                }
-                for (var i in doc.tags) {
-                    if (doc.tags[i] === tagId) {
-                        if (debugA) {
-                            console.log("found tag " + doc.tags[i] + " and " + tagId);
-                        }
-                        doc.tags.splice(i, 1);
-                    }
-                }
-                doc.save(function(err, newDoc) {
-                    if (err) {
-                        if (debugA) {
-                            console.log("rejected while saving doc: " + err);
-                        }
-                        deferred.reject();
-                    } else {
-                        if (debugB) {
-                            console.log("doc deleted one tagId, now: " + newDoc.tags.length);
-                        }
-                        deferred.resolve(newDoc);
-                    }
-                });
-            }
-        });
-        return deferred.promise;
-    }
-
-    function mergeTagInDoc(docId, oldTag, newTag) {
-        var deferred = q.defer();
-        docModel.findOne({_id: docId}, function(err, doc) {
-            if (err) {
-                if (debugA) {
-                    console.log("rejected while finding one: " + err);
-                }
-                deferred.reject();
-            } else {
-                if (debugB) {
-                    console.log("found one doc: " + doc.title);
-                }
-                for (var i in doc) {
-                    if (doc.tags[i] == oldTag) {
-                        doc.tags[i] = newTag;
-                        break;
-                    }
-                }
-                doc.save(function(err, newDoc) {
-                    if (err) {
-                        if (debugA) {
-                            console.log("rejected while saving doc: " + err);
-                        }
-                        deferred.reject();
-                    } else {
-                        if (debugB) {
-                            console.log("doc with tag id merged");
-                        }
-                        deferred.resolve(newDoc);
-                    }
-                });
-            }
-        });
-    }
-
-    function updateDocIdToTag(oldTags, newTags, docId) {
-        // update the tags if needed, to tag models
-        for (var i in oldTags) {
-            var index = newTags.indexOf(oldTags[i]);
-            if (index == -1) {
-                tagModel.deleteDocIdFromTag(oldTags[i], docId).then(function(){});
-            } else {
-                newTags.splice(index, 1);
-            }
-        }
-        for (var i in newTags) {
-            tagModel.addDocIdToTag(newTags[i], docId).then(function(){});
-        }
     }
 };
