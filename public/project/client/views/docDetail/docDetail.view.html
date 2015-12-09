@@ -2,10 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-                <div class="button-wrapper" ng-repeat="tag in tags">
-                    <label class="form-group">
-                        <a href="#/doc/byTags">{{tag.tagName}} </a>
-                    </label>
+                <div class="form-inline">
+                    <p>Tags:</p>
+                    <div class="button-wrapper" ng-repeat="tag in tags">
+                        <label class="form-group">
+                            <a href="#/doc/byTags">{{tag.tagName}}</a>
+                        </label>
+                    </div>
                 </div>
                 <h3>{{doc.title}}</h3>
                 <p>{{doc.snapShot}}</p>

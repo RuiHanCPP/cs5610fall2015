@@ -1,6 +1,8 @@
 <section id="docEdit">
     <div class="container">
+        <h2>Edit document</h2>
         <form class="form-inline">
+            <h3>Tags:</h3>
             <div class="button-wrapper" ng-repeat="tag in tags">
                 <label class="form-group">
                     <input type="checkbox" ng-model="selection.ids[tag._id]"> {{tag.tagName}}

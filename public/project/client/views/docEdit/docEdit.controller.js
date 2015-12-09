@@ -9,7 +9,7 @@
         init();
 
         function init() {
-            if ($rootScope.user) {
+            if (!$rootScope.user) {
                 $location.path("/home");
             }
             docService
@@ -19,6 +19,18 @@
                         $location.path("/home");
                     }
                     $scope.doc = doc;
+                    console.log($scope.doc);
+                    tagService
+                        .findAllTags()
+                        .then(function(response) {
+                            $scope.tags = response;
+                            for (var i in $scope.tags) {
+                                $scope.selection.ids[$scope.tags[i]._id] = false;
+                            }
+                            for (var i in $scope.doc.tags) {
+                                $scope.selection.ids[$scope.doc.tags[i]] = true;
+                            }
+                        });
                 });
 
             $scope.selection = {
@@ -27,17 +39,6 @@
             $scope.newTag = {
                 tagName: ""
             };
-            tagService
-                .findAllTags()
-                .then(function(response) {
-                    $scope.tags = response;
-                    for (var i in $scope.tags) {
-                        $scope.selection.ids[$scope.tags[i]._id] = false;
-                    }
-                });
-            for (var i in $scope.doc.tags) {
-                $scope.selections.ids[$scope.doc.tags[i]] = true;
-            }
         }
 
         $scope.createTag = function() {
