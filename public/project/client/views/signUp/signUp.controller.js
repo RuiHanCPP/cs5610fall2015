@@ -14,12 +14,13 @@
 
         $scope.signUp = function() {
             if (inputValidate()) {
+                console.log('here');
                 var user = {
                     username: $scope.username,
                     password: $scope.passwordA,
                     email: $scope.email.text,
                     isAdmin: false,
-                    nickname: $scope.nickname
+                    nickName: $scope.nickname
                 };
                 // This will return a list of all users.
                 userService.createUser(user).then(createUser);
@@ -62,19 +63,17 @@
                             $scope.validUsername = true;
                             userService.findUserByEmail($scope.email.text)
                                 .then(function(response) {
-                                    if (response != null) {
-                                        $scope.validEmail = false;
-                                    } else {
-                                        $scope.validEmail = true;
-                                    }
-                                    return $scope.validEmail && $scope.validUsername;
+                                    $scope.validEmail = response == null;
                                 });
                         } else {
                             $scope.validUsername = false;
+                            return false;
                         }
                     });
+                return $scope.validEmail && $scope.validUsername;
+            } else {
+                return false;
             }
-
         }
     }
 })();

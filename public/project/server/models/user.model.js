@@ -284,21 +284,10 @@ module.exports = function(app, mongoose) {
         return deferred.promise;
     }
 
-    function createUser(user, adminId) {
+    function createUser(user) {
         var deferred = q.defer();
         delete user._id;
-        userModel.findOne({_id: adminId}, function(err, admin) {
-            if (err) {
-                if (debugA) {
-                    console.log("cannot find the user by id " + err);
-                }
-                deferred.reject();
-            } else {
-                if (!admin || !admin.isAdmin) {
-                    user.isAdmin = false;
-                }
-            }
-        });
+        user.isAdmin = false;
         userModel
             .create(user, function(err, newUser) {
                 if (err) {

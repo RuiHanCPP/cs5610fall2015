@@ -67,18 +67,10 @@ module.exports = function(app, userModel) {
     }
 
     function createUser(req, res) {
-        if (req.query.adminId) {
-            userModel
-                .createUser(req.body, req.query.adminId)
-                .then(function(user) {
-                    res.json(user);
-                });
-        } else {
-            userModel
-                .createUser(req.body, null)
-                .then(function(user) {
-                    res.json(user);
-                });
-        }
+        userModel
+            .createUser(req.body)
+            .then(function(user) {
+                res.json(user);
+            });
     }
 };
