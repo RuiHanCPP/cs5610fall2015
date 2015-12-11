@@ -70,8 +70,9 @@
                 if ($scope.doc.tags.length < 1) {
                     $scope.errorMessage = "You need to select at least one tag";
                 } else {
+                    console.log($scope.doc);
                     docService
-                        .createDoc($scope.doc)
+                        .updateDoc($scope.doc._id, $scope.doc)
                         .then(function(respond) {
                             $location.path("/doc/detail/" + respond._id);
                         });

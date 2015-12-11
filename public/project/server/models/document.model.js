@@ -76,12 +76,12 @@ module.exports = function(app, mongoose) {
 
     function updateDoc(docId, document) {
         var deferred = q.defer();
-        delete document.id;
+        delete document._id;
         delete document.comments;
         delete document.userId;
         document.date = new Date();
         document.tags.sort();
-        docModel.findOne({id: docId}, function(err, doc) {
+        docModel.findOne({_id: docId}, function(err, doc) {
             if (err) {
                 if (debugA) {
                     console.log("rejected while finding one: " + err);
@@ -91,22 +91,24 @@ module.exports = function(app, mongoose) {
                 if (debugB) {
                     console.log("doc found " + doc.title + doc.date);
                 }
-                for (var property in document) {
-                    doc[property] = document[property];
-                }
-                doc.save(function(err, newDoc) {
-                    if (err) {
-                        if (debugA) {
-                            console.log("rejected while saving: " + err);
-                        }
-                        deferred.reject();
-                    } else {
-                        if (debugB) {
-                            console.log("doc saved" + newDoc.date);
-                        }
-                        deferred.resolve(newDoc);
+                if (doc) {
+                    for (var property in document) {
+                        doc[property] = document[property];
                     }
-                });
+                    doc.save(function(err, newDoc) {
+                        if (err) {
+                            if (debugA) {
+                                console.log("rejected while saving: " + err);
+                            }
+                            deferred.reject();
+                        } else {
+                            if (debugB) {
+                                console.log("doc saved" + newDoc.date);
+                            }
+                            deferred.resolve(newDoc);
+                        }
+                    });
+                }
             }
         });
         return deferred.promise;

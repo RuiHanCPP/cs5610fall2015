@@ -97,7 +97,7 @@
 
         function updateDoc(id, document) {
             var deferred = $q.defer();
-            $http.put("/api/project/document/" + id, user)
+            $http.put("/api/project/document/" + id, document)
                 .success(function(response) {
                     deferred.resolve(response);
                 });

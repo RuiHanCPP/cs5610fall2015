@@ -1,5 +1,5 @@
 "use strict";
 (function() {
     angular
-        .module("safeHouseApp", ['ngRoute']);
+        .module("safeHouseApp", ['ngRoute', 'ngSanitize']);
 })();

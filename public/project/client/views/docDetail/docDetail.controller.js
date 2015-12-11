@@ -14,7 +14,7 @@
             replyHeader =  "Reply to " + $scope.comments[index].nickName + ": ";
             $scope.replyMessage = replyHeader;
             replyCommentId = $scope.comments[index]._id;
-            console.log($scope.comments);
+            console.log($scope.doc.content);
         };
 
         $scope.cancelReply = function() {
@@ -70,6 +70,7 @@
                         console.log("doc doesn't exist??");
                     }
                     $scope.doc = response;
+                    $scope.doc.content = $scope.doc.content.replace(/(?:\r\n|\r|\n)/g, "<br>");
                     $scope.canEdit = ($rootScope.user && $rootScope.user._id == $scope.doc.userId);
                     $scope.tags = [];
                     for (var i in $scope.doc.tags) {
@@ -83,9 +84,7 @@
                         .findUserById($scope.doc.userId)
                         .then(function(user) {
                             $scope.author = user;
-                        });
-                    if ($scope.canComment) {
-                        commentService
+                        });commentService
                             .findAllCommentsByDocId($scope.doc._id)
                             .then(function(comments) {
                                 $scope.comments = comments;
@@ -100,13 +99,13 @@
                                                     if (comment.replyTo && comment.replyTo != "") {
                                                         comments[index].content = "Reply to " + $scope.comment[comments[index].replyTo].nickName + ": " + comments[index].content;
                                                     }
+                                                    comments[index].content = comments[index].content.replace(/(?:\r\n|\r|\n)/g, '<br />');
                                                 });
                                             }
                                         });
                                 });
 
                             });
-                    }
                 });
         }
     }
