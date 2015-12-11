@@ -71,6 +71,7 @@
                     }
                     $scope.doc = response;
                     $scope.doc.content = $scope.doc.content.replace(/(?:\r\n|\r|\n)/g, "<br>");
+                    $scope.doc.snapShot = $scope.doc.snapShot.replace(/(?:\r\n|\r|\n)/g, "<br>");
                     $scope.canEdit = ($rootScope.user && $rootScope.user._id == $scope.doc.userId);
                     $scope.tags = [];
                     for (var i in $scope.doc.tags) {
